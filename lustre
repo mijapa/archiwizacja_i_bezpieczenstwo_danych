@@ -1,0 +1,15 @@
+MGS/MDT/MDS
+
+mkfs.lustre --reformat --fsname=whatevs --mgs --mdt --index=0 /dev/sdb
+mount -t lustre /dev/sdb /mnt/mdt
+
+
+OST/OSS
+
+mkfs.lustre --reformat --ost --fsname=whatevs --mgsnode=192.168.N.N@tcp0 --index=0 /dev/sdb
+mount -t lustre /dev/sdb /ostoss_mount
+
+CLIENT
+sudo modprobe lustre
+mkdir /mnt/lustre
+mount -t lustre 192.168.N.N@tcp0:/whatevs /mnt/lustre
